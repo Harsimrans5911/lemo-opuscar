@@ -1,9 +1,9 @@
 1
-00:00:00,350 --> 00:00:03,602
+00:00:00,350 --> 00:00:03,755
 Why would a free man sail home to a prison?
 
 2
-00:00:04,350 --> 00:00:10,900
+00:00:04,050 --> 00:00:10,900
 Oregon. Sohan Singh Bhakna, a farmer from Punjab, stacks lumber in a sawmill.
 
 3
@@ -11,7 +11,7 @@ Oregon. Sohan Singh Bhakna, a farmer from Punjab, stacks lumber in a sawmill.
 Here he is taunted as a man from a slave country. The insult becomes his fuel.
 
 4
-00:00:17,150 --> 00:00:24,026
+00:00:17,150 --> 00:00:23,634
 In 1913 the workers found the Ghadar Party, and choose him as its first president.
 
 5
@@ -23,17 +23,17 @@ He bows to no idol. As a Sikh, he bows only to the Guru’s word: stand against 
 A saint, Baba Kesar Singh, had taught him to live for others.
 
 7
-00:00:36,350 --> 00:00:43,011
+00:00:36,350 --> 00:00:42,646
 So in 1914, as war begins, he sails for India to raise a revolt.
 
 8
-00:00:44,150 --> 00:00:49,800
+00:00:44,150 --> 00:00:49,779
 The British are waiting. He is arrested as his ship reaches Calcutta.
 
 9
-00:00:49,850 --> 00:00:55,400
+00:00:49,850 --> 00:00:55,385
 Sentenced to death, then to life, he spends 16 years in prison.
 
 10
-00:00:55,450 --> 00:01:00,010
+00:00:55,450 --> 00:00:59,862
 He never bows. And he lives to see India free.

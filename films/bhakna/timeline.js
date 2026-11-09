@@ -3,16 +3,16 @@ const BEAT = 0.9, BAR = 3.6;                       // 66.7 bpm, 4/4
 const DUR_FILM = 61.2;                             // 17 bars
 // id, start, measured length, subtitle
 const VO = [
-  ['v01', 0.5, 2.502, 'Why would a free man sail home to a prison?'],
-  ['v02', 4.5, 6.109, 'Oregon. Sohan Singh Bhakna, a farmer from Punjab, stacks lumber in a sawmill.'],
-  ['v03', 11.1, 5.791, 'Here he is taunted as a man from a slave country. The insult becomes his fuel.'],
-  ['v04', 17.3, 6.126, 'In 1913 the workers found the Ghadar Party, and choose him as its first president.'],
-  ['v05', 24.5, 6.743, 'He bows to no idol. As a Sikh, he bows only to the Guru’s word: stand against tyranny.'],
-  ['v06', 31.7, 4.371, 'A saint, Baba Kesar Singh, had taught him to live for others.'],
-  ['v07', 36.5, 5.911, 'So in 1914, as war begins, he sails for India to raise a revolt.'],
-  ['v08', 44.3, 5.165, 'The British are waiting. He is arrested as his ship reaches Calcutta.'],
-  ['v09', 50.0, 4.996, 'Sentenced to death, then to life, he spends 16 years in prison.'],
-  ['v10', 55.6, 3.81, 'He never bows. And he lives to see India free.'],
+  ['v01', 0.5, 2.655, 'Why would a free man sail home to a prison?'],
+  ['v02', 4.2, 6.452, 'Oregon. Sohan Singh Bhakna, a farmer from Punjab, stacks lumber in a sawmill.'],
+  ['v03', 11.1, 5.418, 'Here he is taunted as a man from a slave country. The insult becomes his fuel.'],
+  ['v04', 17.3, 5.734, 'In 1913 the workers found the Ghadar Party, and choose him as its first president.'],
+  ['v05', 24.5, 6.887, 'He bows to no idol. As a Sikh, he bows only to the Guru’s word: stand against tyranny.'],
+  ['v06', 31.7, 4.302, 'A saint, Baba Kesar Singh, had taught him to live for others.'],
+  ['v07', 36.5, 5.546, 'So in 1914, as war begins, he sails for India to raise a revolt.'],
+  ['v08', 44.3, 4.879, 'The British are waiting. He is arrested as his ship reaches Calcutta.'],
+  ['v09', 50.0, 4.785, 'Sentenced to death, then to life, he spends 16 years in prison.'],
+  ['v10', 55.6, 3.662, 'He never bows. And he lives to see India free.'],
 ];
 // cues on the grid (bar numbers start at 1)
 const bar = (n, beat = 1) => (n - 1) * BAR + (beat - 1) * BEAT;
