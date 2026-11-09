@@ -1,0 +1,21 @@
+The Voyage Home — credits for third-party material
+
+Fonts (SIL Open Font License 1.1, from Google Fonts, self-hosted in fonts/)
+  Cormorant Garamond — Christian Thalmann (Catharsis Fonts)
+  Caveat — Impallari Type
+  IBM Plex Mono — IBM
+
+Voice
+  Kokoro v1.0 text-to-speech (Apache License 2.0), voice "bm_george", through kokoro-onnx (MIT)
+
+Music and sound
+  Original score and all sound effects are synthesised in mix.py.
+  The plucked string uses the library's physical model (core/audio/pluck.py); the flute, drone, drum and foley are numpy synthesis.
+  No samples or recordings are used.
+
+Picture
+  Painted entirely in code. The stroke engine (engine.js) comes from the Lemo-Opuscar Watercolor Brush style.
+  No photographs, maps or archive images are used. The figures are not likenesses.
+
+Speech check (not in the film)
+  Whisper base.en (MIT) through sherpa-onnx (Apache License 2.0)

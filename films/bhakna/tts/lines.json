@@ -1,0 +1,77 @@
+[
+ {
+  "id": "v01",
+  "voice": "bm_george",
+  "speed": 0.95,
+  "text": "Why would a free man sail home, to a prison?",
+  "sub": "Why would a free man sail home to a prison?"
+ },
+ {
+  "id": "v02",
+  "voice": "bm_george",
+  "speed": 0.95,
+  "text": "Oregon. Sohan Singh Bhukna, a farmer from Punjab, stacks lumber in a sawmill.",
+  "sub": "Oregon. Sohan Singh Bhakna, a farmer from Punjab, stacks lumber in a sawmill.",
+  "asr": "Oregon, Sohansingbukner, a farmer from Punjab, stacks lumber in a sawmill."
+ },
+ {
+  "id": "v03",
+  "voice": "bm_george",
+  "speed": 0.95,
+  "text": "Here, he is taunted as a man from a slave country. The insult becomes his fuel.",
+  "sub": "Here he is taunted as a man from a slave country. The insult becomes his fuel."
+ },
+ {
+  "id": "v04",
+  "voice": "bm_george",
+  "speed": 0.95,
+  "text": "In nineteen thirteen, the workers found the Guddar Party, and choose him as its first president.",
+  "sub": "In 1913 the workers found the Ghadar Party, and choose him as its first president.",
+  "asr": "In 1913, the workers found the Gudhar Party and choose him as its first president."
+ },
+ {
+  "id": "v05",
+  "voice": "bm_george",
+  "speed": 0.95,
+  "text": "He bows to no idol. As a Sikh, he bows only to the Guru's word: stand against tyranny.",
+  "sub": "He bows to no idol. As a Sikh, he bows only to the Guru's word: stand against tyranny."
+ },
+ {
+  "id": "v06",
+  "voice": "bm_george",
+  "speed": 0.95,
+  "text": "A saint, Baba Kayser Singh, had taught him to live for others.",
+  "sub": "A saint, Baba Kesar Singh, had taught him to live for others.",
+  "asr": "A saint, Boba-Kaser Singh, had taught him to live for others."
+ },
+ {
+  "id": "v07",
+  "voice": "bm_george",
+  "speed": 0.95,
+  "text": "So in nineteen fourteen, as war begins, he sails for India, to raise a revolt.",
+  "sub": "So in 1914, as war begins, he sails for India to raise a revolt.",
+  "asr": "So in 1914, as war begins, he sails for India to raise a revolt."
+ },
+ {
+  "id": "v08",
+  "voice": "bm_george",
+  "speed": 0.95,
+  "text": "The British are waiting. He is arrested as his ship reaches Calcutta.",
+  "sub": "The British are waiting. He is arrested as his ship reaches Calcutta."
+ },
+ {
+  "id": "v09",
+  "voice": "bm_george",
+  "speed": 0.95,
+  "text": "Sentenced to death, then to life, he spends sixteen years in prison.",
+  "sub": "Sentenced to death, then to life, he spends 16 years in prison.",
+  "asr": "Sentenced to death, then to life, he spent 16 years in prison."
+ },
+ {
+  "id": "v10",
+  "voice": "bm_george",
+  "speed": 0.95,
+  "text": "He never bows. And he lives to see India free.",
+  "sub": "He never bows. And he lives to see India free."
+ }
+]
