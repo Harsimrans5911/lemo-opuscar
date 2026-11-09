@@ -15,4 +15,5 @@ node core/render/video.mjs "$HERE" --fps 30 --workers 4 --size 1080x1920 --out "
 "$LIB/.venv/bin/python" "$HERE/mix.py"
 "$LIB/.venv/bin/python" "$HERE/srt_cues.py"
 "$LIB/.venv/bin/python" core/render/srt.py "$HERE/out/srt_cues.json" "$HERE/voyage-home.srt"
+"$LIB/.venv/bin/python" core/render/srt.py "$HERE/out/srt_cues_en.json" "$HERE/voyage-home.en.srt"
 sh core/render/mux.sh "$HERE/out/video.mp4" "$HERE/out/mix.wav" "$HERE/voyage-home.mp4" 30 1

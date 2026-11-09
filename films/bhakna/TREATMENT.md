@@ -118,3 +118,13 @@ Silences: before the lamp lights (drum stops, one bar of drone only), and the ar
 ## 10. Compared with the style's demo
 
 Structure (a tall sheet read downward, not a sideways walk), opening (a written question), signature shot (bars painted over the figure), camera path (vertical tilt with pushes), score (an original synthesised score, with silence at the turn) and ending (a lamp and a written answer) all differ from the demo.
+
+## 11. Punjabi version (current cut)
+
+The film was re-voiced in Punjabi and rebuilt around one idea: sacrifice.
+
+- **Opening:** Guru Nanak's line is written on blank paper, "ਜਉ ਤਉ ਪ੍ਰੇਮ ਖੇਲਣ ਕਾ ਚਾਉ ॥ ਸਿਰੁ ਧਰਿ ਤਲੀ ਗਲੀ ਮੇਰੀ ਆਉ ॥" (if you would play the game of love, come with your head on your palm). The narrator speaks it in modern Punjabi.
+- **Thread:** the head. He bows it only to the Guru's word; he sails "with his head on his palm"; in prison "his head never bowed".
+- **Ending:** the same salok's closing line is written under the lamp, "ਸਿਰੁ ਦੀਜੈ ਕਾਣਿ ਨ ਕੀਜੈ ॥", and the narrator's last words name it: sacrifice is to give your head, but never to bow it.
+- **Voice:** ElevenLabs "Sufi - Wise Punjabi Conversation", Eleven v3. On-screen text and subtitles are in Gurmukhi (Tiro Gurmukhi); an English subtitle file is delivered beside the Punjabi one.
+- **Timing:** 73.3 s. Picture and score are still written in score time (61.2 s, 17 bars); `WARP` in `timeline.js` stretches each scene to the length of its Punjabi line, so the tempo breathes scene by scene.

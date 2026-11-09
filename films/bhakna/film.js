@@ -1,6 +1,6 @@
 // The Voyage Home: one tall painted sheet, read downward. Everything is a pure function of t.
 const cv = document.getElementById('c'), ctx = cv.getContext('2d');
-window.DUR = DUR_FILM * K;
+window.DUR = WARP[WARP.length - 1][0];
 let PAPER_IMG, OBJ = [], BARS = [], TALLY, END = {}, FRAME_TEXTS = [];
 const EV = [];
 const QS = new URLSearchParams(location.search);
@@ -50,7 +50,7 @@ function text(id, txt, font, x, y, p, o = {}) {
   ctx.fillText(txt, x, y); ctx.fillText(txt, x, y);
   ctx.restore();
 }
-const HAND = (s, w = 500) => `${w} ${s}px Caveat`, MONO = s => `400 ${s}px "IBM Plex Mono"`, SERIF = (s, it) => `${it ? 'italic ' : ''}500 ${s}px "Cormorant Garamond"`;
+const GUR = (s, it) => `${it ? 'italic ' : ''}400 ${s}px "Tiro Gurmukhi"`, HAND = (s, w = 500) => GUR(Math.round(s * .82), true), MONO = s => `400 ${s}px "IBM Plex Mono"`, SERIF = (s, it) => `${it ? 'italic ' : ''}500 ${s}px "Cormorant Garamond"`;
 function leader(x0, y0, x1, y1, p, bend = 20, a = .75) {
   if (p <= 0) return;
   const pts = qcurve(x0, y0, x1, y1, bend, 16), m = Math.max(1, Math.round(16 * clamp(p)));
@@ -60,16 +60,17 @@ function leader(x0, y0, x1, y1, p, bend = 20, a = .75) {
 }
 // hand notes on the sheet: [id, text, size, x, y, t0, writeDur, align, leader?]
 const NOTES = [
-  ['q1', 'Why would a free man', 106, 540, 700, 0.2, 0.8, 'center'],
-  ['q2', 'sail home to a prison?', 106, 540, 828, 1.0, 0.9, 'center'],
-  ['n_or', 'Oregon, USA', 50, 80, 1830, 7.0, 0.7, 'left'],
-  ['n_ins', '“a man from a slave country”', 36, 228, 2318, 12.9, 0.9, 'left', [440, 2346, 452, 2392, 10]],
-  ['n_pres', 'first president: Sohan Singh Bhakna', 46, 540, 4170, 20.0, 0.9, 'center'],
-  ['n_idol1', 'no idol,', 54, 76, 5110, 26.6, 0.5, 'left'],
-  ['n_idol2', 'only the Word', 54, 76, 5172, 27.1, 0.7, 'left', [300, 5196, 392, 5236, -14]],
-  ['n_baba', 'Baba Kesar Singh', 34, 190, 5770, 32.5, 0.7, 'left', [290, 5796, 296, 5878, 10]],
-  ['n_home', 'homeward, 1914', 54, 520, 7090, 38.0, 0.8, 'left'],
-  ['n_cal', 'Calcutta, 13 October 1914', 48, 540, 8790, 45.0, 0.9, 'center'],
+  ['q1', 'ਜਉ ਤਉ ਪ੍ਰੇਮ ਖੇਲਣ ਕਾ ਚਾਉ ॥', 76, 540, 700, 0.2, 0.8, 'center'],
+  ['q2', 'ਸਿਰੁ ਧਰਿ ਤਲੀ ਗਲੀ ਮੇਰੀ ਆਉ ॥', 76, 540, 800, 1.0, 0.9, 'center'],
+  ['q3', 'ਗੁਰੂ ਨਾਨਕ', 50, 540, 905, 1.9, 0.4, 'center'],
+  ['n_or', 'ਓਰੇਗਨ, ਅਮਰੀਕਾ', 50, 80, 1830, 7.0, 0.7, 'left'],
+  ['n_ins', '“ਗ਼ੁਲਾਮ ਮੁਲਕ ਦਾ ਬੰਦਾ”', 36, 228, 2318, 12.9, 0.9, 'left', [440, 2346, 452, 2392, 10]],
+  ['n_pres', 'ਪਹਿਲਾ ਪ੍ਰਧਾਨ: ਸੋਹਣ ਸਿੰਘ ਭਕਨਾ', 46, 540, 4170, 20.0, 0.9, 'center'],
+  ['n_idol1', 'ਮੂਰਤੀ ਨਹੀਂ,', 54, 76, 5110, 26.6, 0.5, 'left'],
+  ['n_idol2', 'ਸਿਰਫ਼ ਸ਼ਬਦ', 54, 76, 5172, 27.1, 0.7, 'left', [300, 5196, 392, 5236, -14]],
+  ['n_baba', 'ਬਾਬਾ ਕੇਸਰ ਸਿੰਘ', 38, 190, 5770, 32.5, 0.7, 'left', [290, 5796, 296, 5878, 10]],
+  ['n_home', 'ਵਤਨ ਵੱਲ, 1914', 54, 520, 7090, 38.0, 0.8, 'left'],
+  ['n_cal', 'ਕਲਕੱਤਾ, 13 ਅਕਤੂਬਰ 1914', 48, 540, 8790, 45.0, 0.9, 'center'],
 ];
 NOTES.forEach(n => EV.push({ t: n[5], type: 'pen', dur: n[6], pan: (n[3] - 540) / 800 }));
 
@@ -131,7 +132,8 @@ function build() {
   EV.push({ t: 50.4, type: 'mist', dur: 2.2 }, { t: 53.4, type: 'brush', dur: .7, pan: 0, gain: 1 }, { t: 54.0, type: 'brush', dur: 1.4, pan: 0, gain: 1 }, { t: CUE.lamp, type: 'ding' }, { t: CUE.dawn, type: 'ding' });
   EV.push({ t: 55.4, type: 'pen', dur: 1.2, pan: 0 });
   for (const k in CUE) EV.push({ t: CUE[k], type: 'cue', name: k });
-  EV.forEach(e => { e.t *= K; if (e.dur) e.dur *= K; });                    // score time -> film time
+  EV.forEach(e => { const T = toFilm(e.t); if (e.dur) e.dur = toFilm(e.t + e.dur) - T; e.t = T; });   // score time -> film time
+  WARP.forEach(([T, s]) => EV.push({ t: T, type: 'warp', s }));
   VO.forEach(([id, s, d]) => EV.push({ t: s, type: 'vo', id, dur: d }));
   EV.sort((a, b) => a.t - b.t);
 }
@@ -163,13 +165,13 @@ function drawNotes(t) {
   for (const [id, txt, size, x, y, t0, d, align, ld] of NOTES) {
     if (t < t0 - .4) continue;
     if (ld) leader(ld[0], ld[1], ld[2], ld[3], seg(t, t0 - .35, t0 + .2), ld[4]);
-    text(id, txt, HAND(size, id[0] === 'q' ? 600 : 500), x, y, seg(t, t0, t0 + d), { align, h: size * .5 });
+    text(id, txt, id[0] === 'q' && id !== 'q3' ? GUR(size) : HAND(size), x, y, seg(t, t0, t0 + d), { align, h: size * .5 });
   }
   // the newspaper's own type, rotated with the sheet
   const pm = seg(t, CUE.party, CUE.party + .8);
   if (pm > 0) { ctx.save(); ctx.translate(540, 4000); ctx.rotate(-.035);
-    text('mast', 'Ghadar', SERIF(170, true), 0, -262, pm, { align: 'center', h: 80, halo: 0, a: .88 });
-    text('mast2', 'THE GHADAR PARTY · 1913', MONO(24), 0, -126, seg(t, 18.9, 19.5), { align: 'center', h: 16, track: 4, halo: 0, a: .8 });
+    text('mast', 'ਗ਼ਦਰ', GUR(190), 0, -262, pm, { align: 'center', h: 80, halo: 0, a: .88 });
+    text('mast2', 'ਗ਼ਦਰ ਪਾਰਟੀ · 1913', GUR(30), 0, -126, seg(t, 18.9, 19.5), { align: 'center', h: 16, track: 4, halo: 0, a: .8 });
     ctx.restore(); }
 }
 function drawMist(t) {
@@ -194,34 +196,40 @@ function drawEnding(t) {
   drawList(ctx, END.dawn, eio(seg(t, CUE.dawn, CUE.dawn + 1.6)));
   ctx.save(); ctx.translate(LX, LY); ctx.scale(1.9, 1.9); drawList(ctx, END.bowl, seg(t, 53.3, 54.0)); ctx.restore();
   drawFlame(END.flame, LX, LY, 1.9, t, CUE.dawn);
-  text('ans', 'because freedom was his prayer', HAND(66, 600), 540, 1180, seg(t, 55.4, 56.6), { align: 'center', h: 34 });
-  text('name', 'Baba Sohan Singh Bhakna', SERIF(58), 540, 1262, seg(t, 56.8, 57.4), { align: 'center', h: 30, fade: true });
-  text('dates', '1870 — 1968', MONO(26), 540, 1316, seg(t, 57.3, 57.9), { align: 'center', h: 16, track: 6, a: .8, fade: true });
+  text('ans', 'ਸਿਰੁ ਦੀਜੈ ਕਾਣਿ ਨ ਕੀਜੈ ॥', GUR(70), 540, 1176, seg(t, 55.4, 56.6), { align: 'center', h: 34 });
+  text('name', 'ਬਾਬਾ ਸੋਹਣ ਸਿੰਘ ਭਕਨਾ', GUR(50), 540, 1268, seg(t, 56.8, 57.4), { align: 'center', h: 30, fade: true });
+  text('dates', '1870 — 1968', MONO(26), 540, 1326, seg(t, 57.3, 57.9), { align: 'center', h: 16, track: 6, a: .8, fade: true });
   ctx.restore();
 }
 // ---------- subtitles: on the paper, above the app's bottom interface ----------
-function wrap(txt, maxW) {
-  if (ctx.measureText(txt).width <= maxW) return [txt];
+function wrap(txt, maxW) {                            // balanced wrap into as few lines as fit
+  const full = ctx.measureText(txt).width; if (full <= maxW) return [txt];
   const words = txt.split(' '); let best = null;
-  for (let i = 1; i < words.length; i++) { const a = words.slice(0, i).join(' '), b = words.slice(i).join(' '), m = Math.max(ctx.measureText(a).width, ctx.measureText(b).width); if (!best || m < best[0]) best = [m, a, b]; }
-  return [best[1], best[2]];
+  for (let n = Math.ceil(full / maxW); n <= 4 && !best; n++) {
+    const target = full / n, lines = ['']; let ok = true;
+    for (const w of words) { const cur = lines[lines.length - 1], tryL = cur ? cur + ' ' + w : w;
+      if (cur && lines.length < n && ctx.measureText(tryL).width > target * 1.08) lines.push(w); else lines[lines.length - 1] = tryL; }
+    for (const l of lines) if (ctx.measureText(l).width > maxW) ok = false;
+    if (ok) best = lines;
+  }
+  return best || [txt];
 }
 const fade2 = (t, a, b, fi = .25, fo = .35) => ss(seg(t, a, a + fi)) * (1 - ss(seg(t, b - fo, b)));
 function drawSubs(t) {
   for (let i = 0; i < VO.length; i++) {
-    const [, s, d, en] = VO[i], end = Math.min(s + d + .6, i + 1 < VO.length ? VO[i + 1][1] - .2 : DUR_FILM * K);   // never overlaps the next line
+    const [, s, d, en] = VO[i], end = Math.min(s + d + .6, i + 1 < VO.length ? VO[i + 1][1] - .2 : window.DUR);   // never overlaps the next line
     const f = fade2(t, s - .15, end, .2, .25); if (f <= 0) continue;
     ctx.save(); ctx.globalAlpha = f * .86; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
-    ctx.shadowColor = rgba(PAPER, 1); ctx.shadowBlur = 20; ctx.font = SERIF(50, true);
-    const lines = wrap(en, 940), y0 = lines.length > 1 ? 1418 : 1448;
-    for (let k = 0; k < 3; k++) { ctx.fillStyle = INK; lines.forEach((ln, i) => ctx.fillText(ln, 540, y0 + i * 58)); }
+    ctx.shadowColor = rgba(PAPER, 1); ctx.shadowBlur = 20; ctx.font = GUR(44);
+    const lines = wrap(en, 900), y0 = 1456 - (lines.length - 1) * 31;
+    for (let k = 0; k < 3; k++) { ctx.fillStyle = INK; lines.forEach((ln, i) => ctx.fillText(ln, 540, y0 + i * 62)); }
     ctx.restore();
   }
 }
 
 // ---------- the frame ----------
 function render(T) {
-  const t = T / K;                                     // film time -> score time
+  const t = toScore(T);                                // film time -> score time
   FRAME_TEXTS = [];
   const c = cam(t);
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.clearRect(0, 0, W, H);
@@ -247,7 +255,7 @@ window.render = render;
 window.TEXTS = t => { render(t); return FRAME_TEXTS.map(x => ({ ...x })); };
 (async () => {
   PAPER_IMG = new Image(); PAPER_IMG.src = 'paper.jpg'; await PAPER_IMG.decode();
-  await Promise.all(['500 50px Caveat', '600 50px Caveat', '500 50px "Cormorant Garamond"', 'italic 500 50px "Cormorant Garamond"', '400 20px "IBM Plex Mono"'].map(f => document.fonts.load(f)));
+  await Promise.all(['500 50px "Cormorant Garamond"', 'italic 500 50px "Cormorant Garamond"', '400 20px "IBM Plex Mono"', '400 50px "Tiro Gurmukhi"', 'italic 400 50px "Tiro Gurmukhi"'].map(f => document.fonts.load(f)));
   build();
   window.EV = EV;
   window.READY = true;

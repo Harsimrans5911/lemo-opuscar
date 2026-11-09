@@ -1,13 +1,18 @@
 The Voyage Home — credits for third-party material
 
 Fonts (SIL Open Font License 1.1, from Google Fonts, self-hosted in fonts/)
+  Tiro Gurmukhi — Tiro Typeworks
   Cormorant Garamond — Christian Thalmann (Catharsis Fonts)
-  Caveat — Impallari Type
   IBM Plex Mono — IBM
 
+Words
+  The opening and closing lines on screen are from Guru Nanak's salok in the Guru Granth Sahib (ang 1412):
+  "ਜਉ ਤਉ ਪ੍ਰੇਮ ਖੇਲਣ ਕਾ ਚਾਉ ॥ ਸਿਰੁ ਧਰਿ ਤਲੀ ਗਲੀ ਮੇਰੀ ਆਉ ॥ ... ਸਿਰੁ ਦੀਜੈ ਕਾਣਿ ਨ ਕੀਜੈ ॥". The narrator speaks a modern Punjabi paraphrase.
+
 Voice
-  voyage-home.mp4: ElevenLabs text-to-speech (Multilingual v2), voice "Ranbir - Warm and Friendly" from the ElevenLabs
-    voice library, generated on the user's paid ElevenLabs plan. Use is under ElevenLabs' terms for that plan.
+  voyage-home.mp4 (Punjabi): ElevenLabs text-to-speech (Eleven v3), voice "Sufi - Wise Punjabi Conversation" from the
+    ElevenLabs voice library, generated on the user's paid ElevenLabs plan. Use is under ElevenLabs' terms for that plan.
+  voyage-home-english.mp4: ElevenLabs (Multilingual v2), voice "Ranbir - Warm and Friendly", same plan and terms.
   voyage-home-female.mp4 and voyage-home-male.mp4: Microsoft Edge neural text-to-speech, voices
     "en-IN-NeerjaExpressiveNeural" and "en-IN-PrabhatNeural", through edge-tts (LGPL-3.0). An online Microsoft service:
     check Microsoft's terms for the use you intend before publishing commercially.
@@ -22,4 +27,4 @@ Picture
   No photographs, maps or archive images are used. The figures are not likenesses.
 
 Speech check (not in the film)
-  Whisper base.en (MIT) through sherpa-onnx (Apache License 2.0)
+  ElevenLabs Scribe for Punjabi; Whisper base.en (MIT) through sherpa-onnx (Apache License 2.0) for the English cuts

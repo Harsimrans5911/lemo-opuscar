@@ -11,8 +11,9 @@ E = json.load(open(HERE + '/events.json')); DUR = E['dur']; EV = E['ev']
 CUE = {e['name']: e['t'] for e in EV if e['type'] == 'cue'}
 N = int(DUR * SR) + SR
 rng = np.random.default_rng(5)
-BAR = CUE['oregon']; BEAT = BAR / 4; KT = BAR / 3.6      # the film may run slower than score time: everything follows the exported cues
-bar = lambda n, b=1: (n - 1) * BAR + (b - 1) * BEAT
+WP = sorted((e['s'], e['t']) for e in EV if e['type'] == 'warp')
+sc2f = lambda s: float(np.interp(s, [p[0] for p in WP], [p[1] for p in WP]))      # score time -> film time (each scene has its own stretch)
+bar = lambda n, b=1: sc2f((n - 1) * 3.6 + (b - 1) * .9)
 M = lambda p: P.midi(p)
 hz = lambda m: 440.0 * 2 ** ((m - 69) / 12)
 def padd(a, b):                              # sum two sounds of different lengths
@@ -77,7 +78,7 @@ pl(bar(9), 'D3', .45, 3.4, pan=.1); pl(bar(10), 'D3', .4, 3.4, pan=.1)
 roll = ['D3', 'A3', 'D4', 'A3', 'F4', 'A3', 'D4', 'A3']
 for b, top in ((11, None), (12, 'G4')):
     for i, p in enumerate(roll):
-        pl(bar(b) + i * BEAT / 2, top if (top and i == 4) else p, .5 + (.14 if i % 4 == 0 else 0), 1.6, gain=.9)
+        pl(bar(b, 1 + i * .5), top if (top and i == 4) else p, .5 + (.14 if i % 4 == 0 else 0), 1.6, gain=.9)
     for bt, v, hi in [(1, 1, 0), (2, .45, 1), (3, .8, 0), (3.5, .4, 1), (4, .5, 1)]: drum(bar(b, bt), v, hi)
 flute(bar(12), 'A4', 2.6, .44)
 # bars 13-14: nothing. The arrest is water and brush only.
@@ -98,7 +99,7 @@ bass = np.stack([lp(music[:, c], 120) for c in (0, 1)], 1); music = music - .3 *
 # ---------------- ambience and foley ----------------
 fx = np.zeros((N, 2), np.float32)
 def bed(x, pts, gain, pan=0):               # envelope points are written in score time
-    add(fx, x * env_pts([(min(a * KT, DUR) if a < 61 else DUR, v) for a, v in pts], len(x)), 0, gain, pan)
+    add(fx, x * env_pts([(sc2f(a) if a < 61 else DUR, v) for a, v in pts], len(x)), 0, gain, pan)
 long = lambda: rng.standard_normal(N)
 room_tone = lp(hp(long(), 120), 900)
 bed(norm(room_tone), [(0, .6), (5, .3), (24, .3), (26, .7), (35, .6), (36.5, .2), (50, .2), (52, .7), (DUR, .7)], .012)
