@@ -1,6 +1,6 @@
 // The Voyage Home: one tall painted sheet, read downward. Everything is a pure function of t.
 const cv = document.getElementById('c'), ctx = cv.getContext('2d');
-window.DUR = DUR_FILM;
+window.DUR = DUR_FILM * K;
 let PAPER_IMG, OBJ = [], BARS = [], TALLY, END = {}, FRAME_TEXTS = [];
 const EV = [];
 const QS = new URLSearchParams(location.search);
@@ -130,8 +130,9 @@ function build() {
   END.bowl = withSeed(93, lampBowl); END.flame = withSeed(94, flame);
   EV.push({ t: 50.4, type: 'mist', dur: 2.2 }, { t: 53.4, type: 'brush', dur: .7, pan: 0, gain: 1 }, { t: 54.0, type: 'brush', dur: 1.4, pan: 0, gain: 1 }, { t: CUE.lamp, type: 'ding' }, { t: CUE.dawn, type: 'ding' });
   EV.push({ t: 55.4, type: 'pen', dur: 1.2, pan: 0 });
-  VO.forEach(([id, s, d]) => EV.push({ t: s, type: 'vo', id, dur: d }));
   for (const k in CUE) EV.push({ t: CUE[k], type: 'cue', name: k });
+  EV.forEach(e => { e.t *= K; if (e.dur) e.dur *= K; });                    // score time -> film time
+  VO.forEach(([id, s, d]) => EV.push({ t: s, type: 'vo', id, dur: d }));
   EV.sort((a, b) => a.t - b.t);
 }
 
@@ -208,7 +209,7 @@ function wrap(txt, maxW) {
 const fade2 = (t, a, b, fi = .25, fo = .35) => ss(seg(t, a, a + fi)) * (1 - ss(seg(t, b - fo, b)));
 function drawSubs(t) {
   for (let i = 0; i < VO.length; i++) {
-    const [, s, d, en] = VO[i], end = Math.min(s + d + .6, i + 1 < VO.length ? VO[i + 1][1] - .2 : DUR_FILM);   // never overlaps the next line
+    const [, s, d, en] = VO[i], end = Math.min(s + d + .6, i + 1 < VO.length ? VO[i + 1][1] - .2 : DUR_FILM * K);   // never overlaps the next line
     const f = fade2(t, s - .15, end, .2, .25); if (f <= 0) continue;
     ctx.save(); ctx.globalAlpha = f * .86; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
     ctx.shadowColor = rgba(PAPER, 1); ctx.shadowBlur = 20; ctx.font = SERIF(50, true);
@@ -219,7 +220,8 @@ function drawSubs(t) {
 }
 
 // ---------- the frame ----------
-function render(t) {
+function render(T) {
+  const t = T / K;                                     // film time -> score time
   FRAME_TEXTS = [];
   const c = cam(t);
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.clearRect(0, 0, W, H);
@@ -239,7 +241,7 @@ function render(t) {
   drawMist(t);
   drawEnding(t);
   vignette();
-  drawSubs(t);
+  drawSubs(T);
 }
 window.render = render;
 window.TEXTS = t => { render(t); return FRAME_TEXTS.map(x => ({ ...x })); };

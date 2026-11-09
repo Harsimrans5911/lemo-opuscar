@@ -8,7 +8,7 @@ export LIB
 cd "$LIB"
 [ -f "$HERE/fonts.css" ] || (cd "$HERE" && node fetch_fonts.mjs)
 [ -f "$HERE/paper.jpg" ] || (cd "$HERE" && "$LIB/.venv/bin/python" paper.py)
-[ -f "$HERE/voices/v01.wav" ] || "$LIB/.venv/bin/python" "$HERE/tts_in.py" en-IN-NeerjaExpressiveNeural +0%   # online: Microsoft neural voice
+[ -f "$HERE/voices/v01.wav" ] || "$LIB/.venv/bin/python" "$HERE/tts_el.py"   # online: ElevenLabs, needs ELEVENLABS_API_KEY
 node core/render/events.mjs "$HERE" --size 1080x1920
 node core/render/readcheck.mjs "$HERE" --size 1080x1920
 node core/render/video.mjs "$HERE" --fps 30 --workers 4 --size 1080x1920 --out "$HERE/out/video.mp4"
