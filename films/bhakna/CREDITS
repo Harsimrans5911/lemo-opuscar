@@ -6,7 +6,8 @@ Fonts (SIL Open Font License 1.1, from Google Fonts, self-hosted in fonts/)
   IBM Plex Mono — IBM
 
 Voice
-  Kokoro v1.0 text-to-speech (Apache License 2.0), voice "bm_george", through kokoro-onnx (MIT)
+  Microsoft Edge neural text-to-speech, voice "en-IN-PrabhatNeural" (Indian English), through edge-tts (LGPL-3.0).
+  An online Microsoft service: check Microsoft's terms for the use you intend before publishing commercially.
 
 Music and sound
   Original score and all sound effects are synthesised in mix.py.

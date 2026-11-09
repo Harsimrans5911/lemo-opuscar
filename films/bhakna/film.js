@@ -207,8 +207,9 @@ function wrap(txt, maxW) {
 }
 const fade2 = (t, a, b, fi = .25, fo = .35) => ss(seg(t, a, a + fi)) * (1 - ss(seg(t, b - fo, b)));
 function drawSubs(t) {
-  for (const [, s, d, en] of VO) {
-    const f = fade2(t, s - .15, s + d + .6); if (f <= 0) continue;
+  for (let i = 0; i < VO.length; i++) {
+    const [, s, d, en] = VO[i], end = Math.min(s + d + .6, i + 1 < VO.length ? VO[i + 1][1] - .2 : DUR_FILM);   // never overlaps the next line
+    const f = fade2(t, s - .15, end, .2, .25); if (f <= 0) continue;
     ctx.save(); ctx.globalAlpha = f * .86; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
     ctx.shadowColor = rgba(PAPER, 1); ctx.shadowBlur = 20; ctx.font = SERIF(50, true);
     const lines = wrap(en, 940), y0 = lines.length > 1 ? 1418 : 1448;
